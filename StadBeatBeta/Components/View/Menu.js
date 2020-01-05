@@ -1,25 +1,22 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
-export default class Menu extends React.Component{
+ class Menu extends React.Component{
+   componentDidMount(){
+     console.log("Menu should be displayed");
+   }
     render(){
     return (
-      <View style={styles.menuView}>
-        <View style={styles.menu}>
-          <Image style={styles.controls} source={require('../../assets/header/arrow.png')}/>
-          <Image style={styles.controls} source={require('../../assets/header/menu_dir.png')}/>
-       <Image style={styles.controls} source={require('../../assets/header/profile.png')}/>
-          </View>
+      <View style={styles.menu}>
+          <Image style={styles.controls} source={require('./header/arrow.png')}/>
+          <Image style={styles.controls} source={require('./header/menu_dir.png')}/>
+       <Image style={styles.controls} source={require('./header/profile.png')}/>
       </View>
     );
   }
 }
-
+// problème chemin relatif
 const styles = StyleSheet.create({
-  menuView : {
-    flex:1,
-   // backgroundColor:'cyan',
-  },
   menu : {
     padding:30,
     display:'flex',
@@ -31,3 +28,6 @@ const styles = StyleSheet.create({
     width:20,
   },
 });
+
+export default Menu
+//could be the best pratices in RN 0.60
