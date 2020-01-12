@@ -1,0 +1,125 @@
+INSTALL
+Expo start .... run android 
+
+Installer node js .... 
+
+npm install -g react-native 
+npm install expo
+
+expo start ensuite a... => faire un script... qui va faire ses étapes avec une Vue Windows/mac
+
+Sinon se faire un compte snack pour essayer rapidement
+On peut utiliser son téléphone pour tester son code avec expo !
+https://snack.expo.io/@joanzaf/
+Sur le snack , le projet stadbeatMaps et Film OpenClassroooms sont les projets que je fais en ce moment.. 
+Libre a vous de vous en inspirer et de commencer les tests!
+https://openclassrooms.com/fr/courses/4902061-developpez-une-application-mobile-react-native/5366161-construisez-vos-vues-avec-flexbox
+STATE PROPS REDUX 
+
+Technique intéressante  utiliser la fonction map pour générer des vues en fonctions du nombre d'objetS : 
+  {this.state.markers.map(marker => (
+    <View>
+    <Text>Stadium Searched : {marker.title}</Text>
+    <Text>Description  : {marker.description}</Text>
+    </View>
+  ))}
+ON va cependant préférer utiliser FlatList: voir plus bas
+
+Props, les composants de base de react native ont des props ex: style, title... des props de bases qu'on ne peut pas créer
+Avec les composants Customs on peut créer des props ex: name dans mon composant mounting
+grace au props notre composant a un comportement différent
+
+State : c'est l'état de notre application, les variables dans le state sont les variables qu'on utilise souvent
+on le déclare dans le constructeur et notre composant est ainsi a l'écoute du changement de state 
+qu'on peut changer avec setState... 
+
+REDUx: bibliothèque qui permet de plus facilement gérer notre State
+redux possède un moyen de faire persister les données dans la BDD de l'appli 
+
+
+
+COMPONENTS ,  STACK NAVIGATOR
+Tout est component dans react native , on peut dire que se sont des briques qu'on assemble pour faire notre projet..
+React est surtout designer pour le front... du coup dans chaque fichier on reconnait la structure
+
+import * as React from 'react'
+ import {components react native} from 'react-native'
+
+class MyComponent extends React.Component
+    render(){
+	return(
+
+	)
+export default NomComponent
+
+FLATLIST : Afficher une liste de données importée au préalable... 
+	<FlatList
+	Data ={films} // un import de data
+	KeyExtractor ={item.id.toString()}  référence à l'objet
+	renderItem= {({item})=> <Component film={item}/> } // on passe l'item film au component quon veut
+	/>
+
+MAPVIEW: react-native-maps: 0.26.1 
+on peut afficher : MapView
+		style={{flex:1}}// affichage du component
+		initialRegion={{
+			longitude
+			latitude
+			longitudeDelta
+			latitudeDelta
+		}}
+On pourrait avec le state en définissant le constructor de la classe
+
+constructor(props){
+super(props)
+this.state = {
+	region : {
+		longitude
+		latitude
+		longitudeDelta
+		latitudeDelta
+		}
+	}
+}
+ET dans MapView
+	region={state.region}
+	onRegionChange={this.onRegionChange} // on defini la fonction qui va s'occuper de cela
+		
+Avec les components, souvent des bugs et des problèmes quand on re render le component trop de fois
+MARKER est l'élément graphique qui indique la localisation d'un élément...
+
+
+
+FRAMEWORK 
+
+Testing avec Jest/Detox :: pour le moment je ne maitrise pas assez react native pour faire des tests
+
+
+RELEASE/BUILD
+
+Android/Ios :: savoir build et mettre sur l'app store /Google Play avec un acces privé pourrait permettre à Stephane de pouvoir mieux tester l'appli
+et surtout ça nous mettrait dans le monde Pro, on aura a faire des mises a jour et tout!
+
+LA TECHNO REACT NATIVE :
+Après quelques semaines d'utilisation, j'ai compris que la gestion d'un projet react native est assez compliquée pour les débutants.
+Il faut installer expo, react-native, des emulateurs 
+Les dépendences changent régulièrement , avec la communauté et est pas suffisament documentée
+Snack est bien pour commencer mais devient assez limité ensuite
+
+Erreurs fréquentes :
+Export default NomDeLaClasse à la fin du document au lieu de Export default class NomDeLaClasse
+appel de fonction dans la méthode render() => il ne faut pas render trop de fois le component .. créer une erreur qui m'empeche d'afficher la carte
+
+Je pense qu'il faudra acquérir une base en react native , puis chacun prendre une spécialisation pour le long terme
+React native, peut parfois poser problème au niveau des librairies/dependances... Il faudrait donc préférer une compréhension des technos natives 
+pour vraiment comprendre comment bien utiliser React native. React native faisant office d'intermédiaire entre le code javascript et Langage natif , 
+comprendre comment s'opére la conversion pourrait  nous etre utile.
+
+
+NOTE: Selon les connaissances qu'on gagne ou qu'on a déjà il faut alimenter régulièrement la DOC... La doc android et la doc ios seraient les bienvenus
+Dailleurs qui a un mac ici ?? 
+
+
+
+
+
