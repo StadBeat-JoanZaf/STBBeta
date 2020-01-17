@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {View} from 'react-native';
-import MapView from 'react-native-maps';
+import {View,StyleSheet} from 'react-native';
+import {MapView} from 'react-native-maps';
 
 // import RunInfo from './components/run-info-numeric';
 // import RunInfoNumeric from './compo'
@@ -8,28 +8,44 @@ import MapView from 'react-native-maps';
 
 
  class MapSB extends React.Component{
-   componentDidMount(){
-     console.log("Map has been called");
-     //normal call and it works !
-     //
+   constructor(props){
+     super(props);
+     this.state = {
+       region : {
+        longitude:49.0533436,
+        latitude:2.0561904,
+        longitudeDelta:0,
+        latitudeDelta:5
+       },
+       markers : {
+        title:"Piscine ravinière",
+        description:"petit city sympa assez fréquenté pas encore connecté au service StadBeat",
+        latlng: {
+          longitude:49.058171,
+          latitude:2.0615244
+        }
+       }
+     }
    }
+//Error boundaries should implement getDerivedStateFromError(). In that method, return a state update to display an error message or fallback UI., RootErrorBoundary
+   console.log(this.state);
  render() {
    return(
-     <View style={{flex:1}}>
       <MapView
-      style={{flex:1}}
-        initialRegion={{
-          latitude:-21.331638,
-          longitude:55.470513,
-          latitudeDelta:0.02,
-          longitudeDelta:0.02,
-        }}
-      />
-
-      </View>
-
-
-   )
+        style={{flex:1}}
+        region = {this.state.region}
+        onRegionChange = {this._}
+      >
+      {this.state.markers.map(marker => (
+    <Marker
+      coordinate={marker.latlng}
+      title={marker.title}
+      description={marker.description}
+       image={require('./MapAssets/basketMark.png')}
+    />
+  ))}
+      </MapView>
+   );//appel de al fonction onRegionChange quand la region change
  }
 }
 
